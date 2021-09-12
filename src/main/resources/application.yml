@@ -1,0 +1,49 @@
+server:
+  port: 8081
+
+spring:
+  data:
+    mongodb:
+      database: eshop
+      host: localhost
+      port: 27017
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 690580966094-cldt9mp5c3gaitesusj2d3ihbjdhfp3t.apps.googleusercontent.com
+            clientSecret: YWh15h8b9beOyD_KFRcR9v17
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: 575974220074992
+            clientSecret: 1c9e8463d06f41f872ab540fd4f3531d
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - public_profile
+          github:
+            clientId: 013990eb57940a3ccf2f
+            clientSecret: a4ab37811fb3b962fe76bdabd79f88bcf6698369
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - user:email
+              - read:user
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+
+app:
+  auth:
+    privateKey: privatekey_pkcs8.pem
+    publicKey: publickey.pem
+    tokenExpirationMs: 864000000
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:4200
